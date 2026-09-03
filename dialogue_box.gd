@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var name_label: Label = $Panel/NameLabel
 @onready var text_label: Label = $Panel/TextLabel
+@onready var player: CharacterBody2D = $"../Player"
 
 var lines: Array[String] = []
 var current_line: int = 0
@@ -17,6 +18,7 @@ func open_dialogue(speaker_name: String, dialogue_lines: Array[String]) -> void:
 	is_open = true
 	visible = true
 	text_label.text = lines[current_line]
+	player.can_move = false
 
 func _process(_delta: float) -> void:
 	if not is_open:
@@ -32,3 +34,4 @@ func _process(_delta: float) -> void:
 func close_dialogue() -> void:
 	is_open = false
 	visible = false
+	player.can_move = true
