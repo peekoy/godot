@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://player.gd" id="1_player"]
 [ext_resource type="Script" path="res://npc.gd" id="2_npc"]
 [ext_resource type="Script" path="res://dialogue_box.gd" id="3_dialogue"]
+[ext_resource type="Script" path="res://pohon.gd" id="4_pohon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(32, 32)
@@ -43,7 +44,7 @@ shape = SubResource("RectangleShape2D_1")
 
 ; Kamera Player
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position_smoothing_enable = true
+position_smoothing_enabled = true
 position_smoothing_speed = 5.0
 
 ; Batu
@@ -73,6 +74,20 @@ color = Color(0.15, 0.5, 0.1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pohon"]
 shape = SubResource("RectangleShape2D_tree")
+
+[node name="LabelPohon" type="Label" parent="Pohon"]
+offset_left = -60.0
+offset_top = -50.0
+offset_right = 60.0
+offset_bottom = -27.0
+text = ""
+horizontal_alignment = 1
+
+[node name="AreaPohon" type="Area2D" parent="Pohon"]
+script = ExtResource("4_pohon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pohon/AreaPohon"]
+shape = SubResource("npc_zone")
 
 ; NPC
 [node name="NPC" type="Area2D" parent="."]
