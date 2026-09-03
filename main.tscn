@@ -48,6 +48,14 @@ shape = SubResource("RectangleShape2D_1")
 position_smoothing_enabled = true
 position_smoothing_speed = 5.0
 
+[node name="PlayerLabel" type="Label" parent="Player"]
+offset_top = -44.0
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = -21.0
+text = "Player"
+horizontal_alignment = 1
+
 ; Batu
 [node name="Batu" type="StaticBody2D" parent="."]
 position = Vector2(480, 180)
@@ -118,6 +126,14 @@ color = Color(0.95, 0.75, 0.2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
 shape = SubResource("zone")
+
+[node name="NPCNameLabel" type="Label" parent="NPC"]
+offset_left = -24.0
+offset_top = -44.0
+offset_right = 24.0
+offset_bottom = -21.0
+text = "NPC"
+horizontal_alignment = 1
 
 ; Dialogue Box
 [node name="DialogueBox" type="CanvasLayer" parent="."]
