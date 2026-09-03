@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://npc.gd" id="2_npc"]
 [ext_resource type="Script" path="res://dialogue_box.gd" id="3_dialogue"]
 [ext_resource type="Script" path="res://pohon.gd" id="4_pohon"]
+[ext_resource type="Script" path="res://batu.gd" id="5_batu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(32, 32)
@@ -11,7 +12,7 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
 size = Vector2(64, 64)
 
-[sub_resource type="RectangleShape2D" id="npc_zone"]
+[sub_resource type="RectangleShape2D" id="zone"]
 size = Vector2(80, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tree"]
@@ -61,6 +62,20 @@ color = Color(0.9, 0.2, 0.2, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Batu"]
 shape = SubResource("RectangleShape2D_wall")
 
+[node name="LabelBatu" type="Label" parent="Batu"]
+offset_left = -60.0
+offset_top = -50.0
+offset_right = 60.0
+offset_bottom = -27.0
+text = ""
+horizontal_alignment = 1
+
+[node name="AreaBatu" type="Area2D" parent="Batu"]
+script = ExtResource("5_batu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Batu/AreaBatu"]
+shape = SubResource("zone")
+
 ; Pohon
 [node name="Pohon" type="StaticBody2D" parent="."]
 position = Vector2(900, 350)
@@ -87,7 +102,7 @@ horizontal_alignment = 1
 script = ExtResource("4_pohon")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pohon/AreaPohon"]
-shape = SubResource("npc_zone")
+shape = SubResource("zone")
 
 ; NPC
 [node name="NPC" type="Area2D" parent="."]
@@ -102,7 +117,7 @@ offset_bottom = 16.0
 color = Color(0.95, 0.75, 0.2, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
-shape = SubResource("npc_zone")
+shape = SubResource("zone")
 
 ; Dialogue Box
 [node name="DialogueBox" type="CanvasLayer" parent="."]
