@@ -1,0 +1,98 @@
+﻿[gd_scene load_steps=6 format=3 uid="uid://mainscene001"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_player"]
+[ext_resource type="Script" path="res://npc.gd" id="2_npc"]
+[ext_resource type="Script" path="res://dialogue_box.gd" id="3_dialogue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="npc_zone"]
+size = Vector2(80, 80)
+
+[node name="Main" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 40.0
+offset_right = 540.0
+offset_bottom = 66.0
+text = "wasd or arrow key"
+horizontal_alignment = 1
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(150, 180)
+script = ExtResource("1_player")
+
+[node name="Visual" type="ColorRect" parent="Player"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.2, 0.6, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="Batu" type="StaticBody2D" parent="."]
+position = Vector2(480, 180)
+
+[node name="Visual" type="ColorRect" parent="Batu"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.9, 0.2, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Batu"]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="NPC" type="Area2D" parent="."]
+position = Vector2(320, 180)
+script = ExtResource("2_npc")
+
+[node name="Visual" type="ColorRect" parent="NPC"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.95, 0.75, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
+shape = SubResource("npc_zone")
+
+[node name="DialogueBox" type="CanvasLayer" parent="."]
+script = ExtResource("3_dialogue")
+
+[node name="Panel" type="ColorRect" parent="DialogueBox"]
+offset_left = 40.0
+offset_top = 230.0
+offset_right = 600.0
+offset_bottom = 330.0
+color = Color(0.08, 0.08, 0.12, 0.92)
+
+[node name="NameLabel" type="Label" parent="DialogueBox/Panel"]
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 33.0
+text= "Nama"
+
+[node name="TextLabel" type="Label" parent="DialogueBox/Panel"]
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 544.0
+offset_bottom = 75.0
+text = "Isi percakapan..."
+autowrap_mode = 2
+
+[node name="HintLabel" type="Label" parent="DialogueBox/Panel"]
+offset_left = 410.0
+offset_top = 74.0
+offset_right = 550.0
+offset_bottom = 95.0
+text = "[Spasi / Enter: Lanjut]"
+horizontal_alignment = 2
