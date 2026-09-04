@@ -1,8 +1,13 @@
 ﻿extends CharacterBody2D
 
+signal inventory_changed(wood: int, stone: int)
+
 @export var speed: float = 200.0
 
 var can_move: bool = true
+
+var wood: int = 0
+var stone: int = 0
 
 func _physics_process(_delta: float) -> void:
 	var direction := Vector2.ZERO
@@ -21,3 +26,13 @@ func _physics_process(_delta: float) -> void:
 
 	velocity = direction.normalized() * speed
 	move_and_slide()
+
+func add_wood(amount: int = 1) -> void:
+	wood += amount
+	print("Kayu: ", wood)
+	inventory_changed.emit(wood, stone)
+
+func add_stone(amount: int = 1) -> void:
+	stone += amount
+	print("Batu: ", stone)
+	inventory_changed.emit(wood, stone)
