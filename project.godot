@@ -2,7 +2,7 @@
 
 [application]
 config/name="Godot"
-run/main_scene="res://main.tscn"
+run/main_scene="res://3d/main_3d.tscn"
 
 [display]
 window/size/viewport_width=640
