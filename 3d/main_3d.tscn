@@ -26,6 +26,14 @@ height = 2.0
 radius = 0.5
 height = 2.0
 
+; Material Visor/Kacamata Depan (Hitam)
+[sub_resource type="StandardMaterial3D" id="Mat_Visor"]
+albedo_color = Color(0.1, 0.1, 0.15, 1.0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_Visor"]
+material = SubResource("Mat_Visor")
+size = Vector3(0.5, 0.2, 0.25)
+
 ; Material Rintangan Balok (Merah)
 [sub_resource type="StandardMaterial3D" id="Mat_Balok"]
 albedo_color = Color(0.85, 0.25, 0.2, 1.0)
@@ -75,6 +83,25 @@ mesh = SubResource("CapsuleMesh_Player")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player3D"]
 shape = SubResource("CapsuleShape3D_Player")
 
+; Visual Char
+[node name="Visual" type="Node3D" parent="Player3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player3D/Visual"]
+mesh = SubResource("CapsuleMesh_Player")
+
+; Kacamata
+[node name="Visor" type="MeshInstance3D" parent="Player3D/Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.42)
+mesh = SubResource("BoxMesh_Visor")
+
+; Titik tumpu kamera
+[node name="CameraPivot" type="Node3D" parent="Player3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+; Lengan Kamera Berjarak 5 meter
+[node name="SpringArm3D" type="SpringArm3D" parent="Player3D/CameraPivot"]
+spring_length = 5.0
+margin = 0.2
+
 ; 5. Kamera 3D (Sudut Miring Top-Down RPG)
-[node name="Camera3D" type="Camera3D" parent="Player3D"]
-transform = Transform3D(1, 0, 0, 0, 0.819, 0.573, 0, -0.573, 0.819, 0, 6, 8)
+[node name="Camera3D" type="Camera3D" parent="Player3D/CameraPivot/SpringArm3D"]
