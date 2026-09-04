@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://dialogue_box.gd" id="3_dialogue"]
 [ext_resource type="Script" path="res://pohon.gd" id="4_pohon"]
 [ext_resource type="Script" path="res://batu.gd" id="5_batu"]
+[ext_resource type="Script" path="res://hud.gd" id="6_hud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(32, 32)
@@ -168,3 +169,22 @@ offset_right = 550.0
 offset_bottom = 95.0
 text = "[Spasi / Enter: Lanjut]"
 horizontal_alignment = 2
+
+; HUD
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("6_hud")
+
+[node name="Panel" type="ColorRect" parent="HUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 48.0
+color = Color(0.08, 0.08, 0.12, 0.8)
+
+[node name="InventoryLabel" type="Label" parent="HUD/Panel"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 164.0
+offset_bottom = 29.0
+text = "Kayu: 0 | Batu: 0"
+vertical_alignment = 1

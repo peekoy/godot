@@ -26,6 +26,6 @@ func _on_body_exited(body: Node2D) -> void:
         prompt_label.text = "wasd or arrow key"
 
 func _process(_delta: float) -> void:
-    if player_in_range and Input.is_key_pressed(KEY_E):
+    if player_in_range and Input.is_action_just_pressed("interact"):
         if not dialogue_box.is_open:
             dialogue_box.open_dialogue("NPC", conversation)
